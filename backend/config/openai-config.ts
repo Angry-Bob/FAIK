@@ -1,9 +1,10 @@
-import { Configuration } from "openai";
+import { OpenAI } from "openai";
 
 export const configureOpenAI = () => {
-  const config = new Configuration({
+  const ai = new OpenAI({
     apiKey: process.env.OPENAI_SECRET_API_KEY,
-    organization: process.env.OPENAI_ORAGANIZATION_ID,
+    organization: process.env.ORGANIZATION_ID,
   });
-  return config;
+
+  return ai;
 };

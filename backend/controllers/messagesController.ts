@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../models/User.js";
 import { configureOpenAI } from "../config/openai-config.js";
-import { OpenAIApi, ChatCompletionRequestMessage } from "openai";
+
+import { ChatCompletionMessageParam } from "openai/resources/chat/completions";
+import { OpenAI, ClientOptions } from "openai";
+
 export const generateChatCompletion = async (
   req: Request,
   res: Response,
@@ -15,16 +18,20 @@ export const generateChatCompletion = async (
         .status(401)
         .json({ message: "Not a registered user!" });
     // grab chats of user
-    const chats = user.chats.map(({ role, content }) => ({
+    const chats = message.chats.map(({ role, content }) => ({
       role,
       content,
-    })) as ChatCompletionRequestMessage[];
+    })) as ChatCompletionMessageParam[];
     chats.push({ content: message, role: "user" });
     user.chats.push({ content: message, role: "user" });
 
     // send all chats with new one to openAI API
+
+
     const config = configureOpenAI();
-    const openai = new OpenAIApi(config);
+    const openai = new OpenAI(ai);
+
+
     // get latest response
     const chatResponse = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
