@@ -18,3 +18,5 @@ async function disconnectFromDatabase() {
         throw new Error('Cannot disconnect from MongoDB, please try again.')
     }
 }
+
+export  { connectToDatabase, disconnectFromDatabase }

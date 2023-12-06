@@ -1,7 +1,9 @@
-import express from "express";
-import { config } from "dotenv";
-config();
-const app = express();
-app.use(express.json());
-app.listen(5001, () => console.log('Your server is open!'));
+import app from "./app.js";
+import { connectToDatabase } from "./db/connection.js";
+const PORT = process.env.port || 5001;
+connectToDatabase()
+    .then(() => {
+    app.listen(PORT, () => console.log('Your server is open!'));
+})
+    .catch((e) => console.log(e));
 //# sourceMappingURL=index.js.map
