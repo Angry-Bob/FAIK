@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 import { randomUUID } from "crypto";
 
+// Define the schema for individual chat messages
 const chatSchema = new mongoose.Schema({
   id: {
     type: String,
-    default: randomUUID(),
+    default: randomUUID(), // Generate a random UUID
   },
   role: {
     type: String,
@@ -32,5 +33,5 @@ const userSchema = new mongoose.Schema({
   },
   chats: [chatSchema],
 });
-
+// Create and export the User model based on the defined schema
 export default mongoose.model("User", userSchema);
