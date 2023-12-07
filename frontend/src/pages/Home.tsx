@@ -1,5 +1,6 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
+import { SiRobotframework } from "react-icons/si";
 import TypingAnim from "../components/typer/TypingAnim";
 import Footer from "../components/footer/Footer";
 
@@ -30,33 +31,11 @@ const Home = () => {
             my: 10,
           }}
         >
-          <img
-            src="robot.png"
-            alt="robot"
-            style={{ width: "200px", margin: "auto" }}
-          />
-          <img
-            className="image-inverted rotate"
-            src="openai.png"
-            alt="openai"
-            style={{ width: "200px", margin: "auto" }}
-          />
+         
+          
         </Box>
         <Box sx={{ display: "flex", mx: "auto" }}>
-          <img
-            src="chat.png"
-            alt="chatbot"
-            style={{
-              display: "flex",
-              margin: "auto",
-              width: isBelowMd ? "80%" : "60%",
-              borderRadius: 20,
-              boxShadow: "-5px -5px 105px #64f3d5",
-              marginTop: 20,
-              marginBottom: 20,
-              padding: 10,
-            }}
-          />
+          <SiRobotframework size={200} color={"#51538f"} />
         </Box>
       </Box>
       <Footer />
