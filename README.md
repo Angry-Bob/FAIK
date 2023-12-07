@@ -9,7 +9,7 @@
 <h2>Wireframe</h2>
 <img src="assets/Screenshot 2023-11-30 at 9.09.24 AM.png">
 <h2>Component Hierarchy Diagram</h2>
-
+<img src="assets/Strategy and planning 2.png">
 <h2>Take-Aways</h2>
 <ul>
     <Li>G.S.D</li>
