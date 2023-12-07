@@ -27,3 +27,9 @@
     <Li>MongoDB</li>
     <Li>Mongoose</li>
 </ul>
+
+<h2>Socials</h2>
+<ul>
+<li>LinkedIn: https://www.linkedin.com/in/robert-castor</li>
+<li>GITHUB: https://github.com/Angry-Bob</li>
+</ul>
