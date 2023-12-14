@@ -20,7 +20,7 @@ const CustomizedInput = (props: Props) => {
           borderRadius: 5,
           fontSize: 20,
           borderBottom: "1px solid grey",
-          color: "white",
+          color: "black",
         },
       }}
     />

@@ -1,5 +1,5 @@
 # ChatBOT5000
-<h2>Its a sexy chat bot!</h2>
+<h2>Its a sleek chat bot!</h2>
 
 <p>FAIK uses the GPT 3.5 turbo model, and does an amazing job showing off the capabilities of modern AI</p>
 
@@ -26,10 +26,20 @@
     <Li>EXPRESS</li>
     <Li>MongoDB</li>
     <Li>Mongoose</li>
+    <Li>NODE.JS</li>
 </ul>
+
 
 <h2>Socials</h2>
 <ul>
 <li>LinkedIn: https://www.linkedin.com/in/robert-castor</li>
 <li>GITHUB: https://github.com/Angry-Bob</li>
+</ul>
+
+<h2>Citations<h2>
+<ul>
+    <li>https://www.youtube.com/watch?v=wrHTcjSZQ1Y</li>
+    <li>https://github.com/Nikhilthadani/MERN-AI-ChatBot/tree/final</li>
+    <li>MUI Library</li>
+    <li>Openai NODE.JS Library</li>
 </ul>
