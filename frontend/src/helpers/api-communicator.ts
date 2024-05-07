@@ -40,6 +40,7 @@ export const sendChatRequest = async (message: string) => {
     throw new Error("Unable to send chat");
   }
   const data = await res.data;
+  
   return data;
 };
 

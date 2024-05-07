@@ -1,12 +1,11 @@
-import Header from "./components/Header";
+import Header from "./components/header";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Signup from "./pages/signup";
 import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 import { useAuth } from "./context/AuthContext";
-import Footer from "./components/footer/Footer";
 function App() {
   const auth = useAuth();
 

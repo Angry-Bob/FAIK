@@ -4,12 +4,16 @@ import { useAuth } from "../../context/AuthContext";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+
 function extractCodeFromString(message: string) {
   if (message.includes("```")) {
     const blocks = message.split("```");
     return blocks;
+  } else {
+    return null; 
   }
 }
+
 
 function isCodeBlock(str: string) {
   if (
@@ -28,29 +32,31 @@ function isCodeBlock(str: string) {
 }
 const ChatItem = ({
   content,
-  role,
+  role
 }: {
   content: string;
   role: "user" | "assistant";
 }) => {
   const messageBlocks = extractCodeFromString(content);
   const auth = useAuth();
-  return role == "assistant" ? (
+
+  return role === "assistant" ? (
     <Box
       sx={{
         display: "flex",
+        color: "white",
         p: 2,
         bgcolor: "#004d5612",
         gap: 2,
         borderRadius: 2,
-        my: 1,
+        my: 0,
       }}
     >
-      <Avatar sx={{ ml: "0" }}>
-        <img src="openai.png" alt="openai" width={"30px"} />
+      <Avatar sx={{ ml: "0", bgcolor: "#ffffff", color: "red", fontSize: "15px"}}>
+        <>fAIk</>
       </Avatar>
       <Box>
-        {!messageBlocks && (
+      {!messageBlocks && (
           <Typography sx={{ fontSize: "20px" }}>{content}</Typography>
         )}
         {messageBlocks &&
@@ -77,11 +83,11 @@ const ChatItem = ({
       }}
     >
       <Avatar sx={{ ml: "0", bgcolor: "black", color: "white" }}>
-        {auth?.user?.name[0]}
-        {auth?.user?.name.split(" ")[1][0]}
+        {auth?.user?.name?.[0]}
+        {auth?.user?.name?.split(" ")[1]?.[0]}
       </Avatar>
       <Box>
-        {!messageBlocks && (
+      {!messageBlocks && (
           <Typography sx={{ fontSize: "20px" }}>{content}</Typography>
         )}
         {messageBlocks &&

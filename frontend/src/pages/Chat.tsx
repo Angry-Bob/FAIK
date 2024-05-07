@@ -20,16 +20,33 @@ const Chat = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
+  
   const handleSubmit = async () => {
     const content = inputRef.current?.value as string;
     if (inputRef && inputRef.current) {
       inputRef.current.value = "";
     }
     const newMessage: Message = { role: "user", content };
-    setChatMessages((prev) => [...prev, newMessage]);
-    const chatData = await sendChatRequest(content);
-    setChatMessages([...chatData.chats]);
-    //
+    setChatMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages, newMessage]; // Adding new message
+      return updatedMessages;
+    });
+  
+    try {
+      const chatData = await sendChatRequest(content);
+      console.log()
+      setChatMessages((prevMessages) => {
+        // Filter out existing messages to avoid duplicates
+        const existingMessagesContent = prevMessages.map((message) => message.content);
+        const newMessages = chatData.chats.filter(
+          (message: Message) => !existingMessagesContent.includes(message.content)
+        );
+        return [...prevMessages, ...newMessages]; // Merge new messages with existing ones
+      });
+    } catch (error) {
+      console.error("Error fetching chat messages:", error);
+      // Handle error
+    }
   };
   const handleDeleteChats = async () => {
     try {
@@ -47,6 +64,7 @@ const Chat = () => {
       toast.loading("Loading Chats", { id: "loadchats" });
       getUserChats()
         .then((data) => {
+          console.log(data)
           setChatMessages([...data.chats]);
           toast.success("Successfully loaded chats", { id: "loadchats" });
         })
@@ -94,19 +112,23 @@ const Chat = () => {
             sx={{
               mx: "auto",
               my: 2,
-              bgcolor: "white",
-              color: "black",
+              bgcolor: "black",
+              color: "white",
               fontWeight: 700,
             }}
           >
-            {auth?.user?.name[0]}
-            {auth?.user?.name.split(" ")[1][0]}
+            {auth?.user?.name && (
+    <>
+      {auth.user.name[0]}
+      {auth.user.name.split(" ")[1]?.[0]}
+    </>
+  )}
           </Avatar>
           <Typography sx={{ mx: "auto", fontFamily: "work sans" }}>
             Hello.
           </Typography>
           <Typography sx={{ mx: "auto", fontFamily: "work sans", my: 4, p: 3 }}>
-            You can start by asking a question.
+            Ask me anything!
           </Typography>
           <Button
             onClick={handleDeleteChats}
@@ -160,10 +182,11 @@ const Chat = () => {
             scrollBehavior: "smooth",
           }}
         >
+         
           {chatMessages.map((chat, index) => (
-            //@ts-ignore
-            <ChatItem content={chat.content} role={chat.role} key={index} />
-          ))}
+                <ChatItem content={chat.content} role={chat.role} key={index}/>
+              ))}
+          
         </Box>
         <div
           style={{
